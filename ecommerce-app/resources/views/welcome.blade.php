@@ -11,7 +11,6 @@
 </head>
 
 <body class="font-sans antialiased dark:bg-black dark:text-white/50 h-screen flex items-center justify-center">
-    <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
     <h1 class="text-center font-bold text-4xl">Hello, 世界</h1>
 </body>
 
