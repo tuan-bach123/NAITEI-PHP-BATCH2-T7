@@ -2,12 +2,28 @@
     <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
         @csrf
 
-        <!-- Name -->
+        <!-- First name -->
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required
-                autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+            <x-input-label for="first_name" :value="__('First name')" />
+            <x-text-input id="first_name" class="block mt-1 w-full" type="text" name="first_name"
+                :value="old('first_name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('first_name')" class="mt-2" />
+        </div>
+
+        <!-- Last name -->
+        <div>
+            <x-input-label for="last_name" :value="__('Last name')" />
+            <x-text-input id="last_name" class="block mt-1 w-full" type="text" name="last_name"
+                :value="old('last_name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('last_name')" class="mt-2" />
+        </div>
+
+        <!-- Username -->
+        <div>
+            <x-input-label for="username" :value="__('Username')" />
+            <x-text-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')"
+                required autofocus autocomplete="username" />
+            <x-input-error :messages="$errors->get('username')" class="mt-2" />
         </div>
 
         <!-- Email Address -->
@@ -41,9 +57,19 @@
         <!-- Upload Photo -->
         <div class="mt-4">
             <x-input-label for="photo" :value="__('Avatar')" />
-            <input class="mt-4 form-control-file" type="file" name="photo" id="photo" class="form-control-file" required>
+            <input class="mt-4 form-control-file" type="file" name="photo" id="photo" class="form-control-file"
+                required>
         </div>
 
+        <!-- Telephone number -->
+        <div class="mt-4">
+            <x-input-label for="telephone" :value="__('Telephone')" />
+
+            <x-text-input id="telephone" class="block mt-1 w-full" type="tel" name="telephone" required
+                autocomplete="tel" />
+
+            <x-input-error :messages="$errors->get('telephone')" class="mt-2" />
+        </div>
 
         <div class="flex items-center justify-end mt-4">
             <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"

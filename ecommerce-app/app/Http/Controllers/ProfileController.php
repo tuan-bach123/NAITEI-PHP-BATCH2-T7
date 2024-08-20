@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\User;
+use App\Http\Controllers\ImageController;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,15 +27,11 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request): RedirectResponse
+    public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        var_dump($request->all());
-        $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255'],
-        ]);
-
+        //$avatar = new ImageController();
         $imageUrl = $this->storeImage($request);
+        //$imageUrl = ImageController::storeImage($request);
 
         $user = User::find($request->user()->id);
         $user->name = $request->name;
@@ -65,7 +63,7 @@ class ProfileController extends Controller
         return Redirect::to('/');
     }
 
-    protected function storeImage(Request $request)
+    protected function storeImage(ProfileUpdateRequest $request)
     {
         $path = $request->file('photo')->store('public/profile');
         return substr($path, strlen('public/'));
