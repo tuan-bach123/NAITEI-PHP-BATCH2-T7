@@ -10,7 +10,7 @@
         <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->name }}</a>
     </h3>
     <p class="text-gray-500">{{ $product->description }}</p>
-    <p class="text-gray-600 mt-2">Category: {{ $product->category?->name }}</p>
+    <p class="text-gray-600 mt-2">{{__('Category')}}: {{ $product->category?->name }}</p>
     <p class="text-gray-800 font-bold mt-2">${{ number_format($product->price, 2) }}</p>
     <div class="mt-2 flex items-center">
         <!-- Display stars for the product -->
@@ -27,7 +27,7 @@
             </svg>
         @endfor
         <span class="ml-2 text-gray-600">{{ $product->rating }}</span>
-        <span class="ml-2 text-gray-600">({{ $product->user_reviews_count }} reviews)</span>
+        <span class="ml-2 text-gray-600">({{ $product->user_reviews_count }} {{__('reviews')}})</span>
     </div>
 </div>
 
