@@ -17,9 +17,9 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): View
+    public function index(Request $request): View
     {
-        return view('profile.edit', [
+        return view('profile.index', [
             'user' => $request->user(),
         ]);
     }
@@ -27,22 +27,31 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
+    public function edit(Request $request): View
+    {
+        return view('profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = User::find($request->user()->id);
+        
+        $user->username = $request->username;
+        $user->email = $request->email;
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
-        $user->email = $request->email;
+        $user->telephone = $request->telephone;
 
-        if ($request->hasFile('photo')) {
-            $avatar = new ImageController();
-            $imageUrl = $avatar->storeImage($request, 'profile');
-            $user->photo = $imageUrl;
+        if ($request->hasFile('avatar')) {
+            $avatar = $request->file('avatar');
+            $avatarName = Auth::user()->id . '.jpg'; 
+            $avatar->move(public_path('images'), $avatarName); 
         }
 
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.index')->with('success', 'profile updated successfully');
     }
 
     /**
