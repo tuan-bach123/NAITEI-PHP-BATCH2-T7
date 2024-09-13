@@ -13,15 +13,24 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\DashboardController;
-
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\GoogleAuthController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
-use App\Http\Controllers\UserReviewController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\UserReviewController;
+use App\Http\Middleware\CheckOwner;
+use App\Models\Product;
+use App\Models\ProductCategory;
+use App\Models\User;
+use Illuminate\Support\Facades\Route;
 
 // Rest of the code...
 
@@ -29,7 +38,11 @@ use App\Http\Controllers\OrderDetailController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get(
+    '/orders/confirmation/{order_id}',
+    [OrderController::class, 'showConfirmation']
+)->name('orders.confirmation');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('send_email', [EmailController::class, 'store'])->name('email.store');
 
@@ -124,3 +137,6 @@ Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogl
 //
 // Route::get('/products', [CategoryController::class, 'index'])->name('products.index');
 // Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
+
+require __DIR__.'/auth.php';
+

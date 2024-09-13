@@ -9,7 +9,7 @@
     @vite('resources/css/app.css') <!-- Tailwind CSS -->
 </head>
 
-<body class="bg-gray-100 flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen bg-gray-100">
 
     <!-- Navigation Bar -->
     @include('layouts.navigation')
@@ -83,11 +83,12 @@
             </div>
             <div class="mt-6 text-right">
                 <button type="submit"
-                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    class="inline-flex justify-center py-2 px-4 text-sm font-medium text-white bg-indigo-600 rounded-md border border-transparent shadow-sm hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:outline-none">
                     Apply Filters
                 </button>
             </div>
         </form>
+
     </div> -->
 <!-- Recently Viewed Products Section -->
 <!-- Recently Viewed Products Section -->
