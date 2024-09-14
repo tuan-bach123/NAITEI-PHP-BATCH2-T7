@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OrderDetail;
 use App\Models\OrderItem;
 use App\Models\OrderStatus;
-use App\Models\User;
+use App\Models\OrderDetail;
+
+use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Auth;
+
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class OrderController extends Controller
 {
     public function index(): View
     {
-        // TODO: Replace this with the authenticated user
-        // $user = Auth::user();
-        $user = User::all()->random();
-        $orderItems = $user->shoppingCarts->first()->shoppingCartItems;
-        $defaultAddress = $user->userAddresses->where('is_default', true)->first()->address;
+        $user = Auth::user();
+        $orderItems = $user->shoppingCarts->last()->shoppingCartItems;
+
+        $userLocation = $defaultAddress = $user->userAddresses()->where('is_default', true)->first();
+        $defaultAddress = $userLocation ? $userLocation->address : null;
 
         $totalPrice = $orderItems->sum(function ($item) {
-            return $item->product->price * $item->qty;
+            return $item->product()->price * $item->qty;
         });
 
         return view('components.orders.index', compact('user', 'orderItems', 'defaultAddress', 'totalPrice'));

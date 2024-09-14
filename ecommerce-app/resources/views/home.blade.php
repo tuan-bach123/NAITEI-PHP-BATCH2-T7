@@ -1,6 +1,4 @@
-
 <x-layout>
-
     <!-- Main Content -->
     <div class="flex-grow">
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
@@ -137,7 +135,6 @@
                         <div class="h-56 w-full">
                             <a href="#">
                                 <img class="mx-auto h-full dark:hidden"
-
                                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg" alt="" />
                                 <img class="mx-auto hidden h-full dark:block"
                                     src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg" alt="" />
@@ -317,7 +314,6 @@
                                     <li class="mr-1" role="presentation">
                                         <button
                                             class="inline-block px-2 pb-2 hover:border-gray-300 hover:text-gray-600 dark:hover:text-gray-300"
-
                                             id="advanced-filers-tab" data-tabs-target="#advanced-filters" type="button"
                                             role="tab" aria-controls="advanced-filters" aria-selected="false">Advanced
                                             Filters</button>
@@ -346,7 +342,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="asus"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 Asus
 
@@ -358,7 +353,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="acer"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 Acer
 
@@ -390,7 +384,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="amd"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 AMD
 
@@ -426,7 +419,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="bose"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 Bose
 
@@ -438,7 +430,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="benq"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 BenQ
 
@@ -499,7 +490,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="benq2"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 BenQ
 
@@ -581,7 +571,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="dell"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 Dell
 
@@ -613,7 +602,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="dobe"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 Dobe
 
@@ -679,7 +667,6 @@
                                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
 
                                             <label for="emi"
-
                                                 class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                 EMI
 
@@ -754,7 +741,6 @@
                                             </label>
 
                                             <input id="min-price" type="range" min="0" max="7000" value="300" step="1"
-
                                                 class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700" />
                                         </div>
 
@@ -765,14 +751,12 @@
                                             </label>
 
                                             <input id="max-price" type="range" min="0" max="7000" value="3500" step="1"
-
                                                 class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700" />
                                         </div>
 
                                         <div class="col-span-2 flex items-center justify-between space-x-2">
 
                                             <input type="number" id="min-price-input" value="300" min="0" max="7000"
-
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 "
                                                 placeholder="" required />
 
@@ -780,7 +764,6 @@
 
 
                                             <input type="number" id="max-price-input" value="3500" min="0" max="7000"
-
                                                 class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                                                 placeholder="" required />
                                         </div>
@@ -799,7 +782,6 @@
                                         </div>
 
                                         <input type="number" id="min-delivery-time-input" value="30" min="3" max="50"
-
                                             class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500 "
                                             placeholder="" required />
                                     </div>
@@ -815,7 +797,7 @@
 
                                                 <input id="condition-all" type="radio" value="" name="list-radio"
                                                     checked
-                                                  class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
+                                                    class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
                                                 <label for="condition-all"
                                                     class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300">
                                                     All </label>
@@ -825,7 +807,6 @@
                                             <div class="flex items-center pl-3">
 
                                                 <input id="condition-new" type="radio" value="" name="list-radio"
-
                                                     class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
                                                 <label for="condition-new"
                                                     class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -836,7 +817,6 @@
                                             <div class="flex items-center pl-3">
 
                                                 <input id="condition-used" type="radio" value="" name="list-radio"
-
                                                     class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
                                                 <label for="condition-used"
                                                     class="ml-2 w-full py-3 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -1008,7 +988,6 @@
                                             <div class="flex items-center">
 
                                                 <input id="three-stars" type="radio" value="" name="rating" checked
-
                                                     class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                                                 <label for="three-stars" class="ml-2 flex items-center">
                                                     <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
@@ -1281,5 +1260,4 @@
                 </div>
             </form>
     </section>
-
 </x-layout>

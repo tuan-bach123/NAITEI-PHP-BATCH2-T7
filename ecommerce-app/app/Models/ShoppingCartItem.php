@@ -29,8 +29,8 @@ class ShoppingCartItem extends Model
         });
     }
 
-    public function product(): BelongsTo
+    public function product(): Product
     {
-        return $this->belongsTo(Product::class);
+        return $this->belongsTo(Product::class)->first();
     }
 }

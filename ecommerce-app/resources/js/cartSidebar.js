@@ -7,6 +7,3 @@ function sidebarClose() {
     document.getElementsByClassName('cart__sidebar')[0].classList.remove('show');
     document.getElementsByClassName('cart__sidecontainer')[0].classList.remove('show');
 }
-
-
-

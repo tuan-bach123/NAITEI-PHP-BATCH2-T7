@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use App\Models\ViewedProduct;
 use App\Models\ProductCategory;
+
+use App\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -45,6 +48,7 @@ class DashboardController extends Controller
                 $query->orderBy('user_reviews_avg_rating', 'desc');
                 break;
         }
+
         $filterCategories = $request->input('categories');
         if ($filterCategories && is_array($filterCategories)) {
             $query->whereIn('product_category_id', $filterCategories);
@@ -52,24 +56,10 @@ class DashboardController extends Controller
 
         $search = $request->input('search');
 
-
-
-
         // Filter by category
-
         if ($search) {
             $query->where('name', 'LIKE', '%' . $search . '%');
         }
-
-
-        // them truong rating khi lay data sp
-        // case $sortRating === 'low-high':
-        //     $query->orderBy('rating', 'asc');
-        //     break;
-        // case $sortRating === 'high-low':
-        //     $query->orderBy('rating', 'desc');
-        //     break;
-
 
         $products = $query->paginate(15);
         ;
@@ -81,6 +71,7 @@ class DashboardController extends Controller
                 ->take(5)
                 ->get();
         }
+
         return view('dashboard', [
             'products' => $products,
             'categories' => $categories,
