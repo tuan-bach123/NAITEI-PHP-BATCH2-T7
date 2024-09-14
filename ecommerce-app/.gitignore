@@ -19,3 +19,4 @@ yarn-error.log
 /.idea
 /.vscode
 "ecommerce-app/.env" 
+./package-lock.json

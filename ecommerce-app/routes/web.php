@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserAddressController;
 use App\Http\Middleware\CheckOwner;
 use Illuminate\Support\Facades\Route;
 
@@ -43,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
     Route::post('/cart/add', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/removeItem', [CartController::class, 'removeItem'])->name('cart.removeItem');
+
+    Route::post('/address/add', [UserAddressController::class, 'store'])->name('address.new');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {

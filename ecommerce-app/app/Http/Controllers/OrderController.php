@@ -20,7 +20,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $orderItems = $user->shoppingCarts->last()->shoppingCartItems;
 
-        $userLocation = $defaultAddress = $user->userAddresses()->where('is_default', true)->first();
+        $userLocation = $user->userAddresses()->where('is_default', true)->first();
         $defaultAddress = $userLocation ? $userLocation->address : null;
 
         $totalPrice = $orderItems->sum(function ($item) {
