@@ -49,7 +49,7 @@
                           <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z" />
                         </svg>
-                        {{_('Add to Favourites')}}
+                        {{__('Add to Favourites')}}
                       </button>
 
                       <form action="{{ route('cart.removeItem', ['product_id' => $cart_item->product()->id]) }}" method="POST">
@@ -60,7 +60,7 @@
                             height="24" fill="none" viewBox="0 0 24 24">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                           </svg>
-                          Remove
+                          {{__('Remove')}}
                         </button>
                       </form>
                     </div>
@@ -71,7 +71,7 @@
           </div>
 
           <div class="hidden xl:mt-8 xl:block">
-            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">People also bought</h3>
+            <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">{{__('People also bought')}}</h3>
             <div class="mt-6 grid grid-cols-3 gap-4 sm:mt-8">
               @foreach ($trend_items as $trend_item)
                 <div
@@ -103,7 +103,7 @@
                     </button>
                     <div id="favourites-tooltip-1" role="tooltip"
                       class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-700">
-                      Add to favourites
+                      {{__('Add to favourites')}}
                       <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button type="button"
@@ -113,7 +113,7 @@
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                           d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7h-1M8 7h-.688M13 5v4m-2-2h4" />
                       </svg>
-                      Add to cart
+                      {{__('Add to cart')}}
                     </button>
                   </div>
                 </div>
@@ -152,11 +152,11 @@
             </div>
 
             <a href="{{ route('orders.index') }}"
-              class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed
-              to Checkout</a>
+              class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+              {{__('Proceed to Checkout')}}</a>
 
             <div class="flex items-center justify-center gap-2">
-              <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> or </span>
+              <span class="text-sm font-normal text-gray-500 dark:text-gray-400"> {{__('or')}} </span>
               <a href="{{ route('home.index') }}" title=""
                 class="inline-flex items-center gap-2 text-sm font-medium text-primary-700 underline hover:no-underline dark:text-primary-500">
                 {{__('Continue Shopping')}}
@@ -173,15 +173,15 @@
             class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
             <form class="space-y-4">
               <div>
-                <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> Do you have a
-                  voucher or gift card? </label>
+                <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"> 
+                  {{__('Do you have a voucher or gift card')}}? </label>
                 <input type="text" id="voucher"
                   class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder:text-gray-400 dark:focus:border-primary-500 dark:focus:ring-primary-500"
                   placeholder="" required />
               </div>
               <button type="submit"
-                class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Apply
-                Code</button>
+                class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                {{__('Apply Code')}}</button>
             </form>
           </div>
         </div>

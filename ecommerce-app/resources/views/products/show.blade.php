@@ -1,9 +1,10 @@
 <x-layout>
+    <!-- Product Details -->
     <section class="py-8 bg-white md:py-16 dark:bg-gray-900 antialiased">
         <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                    <img class="w-full dark:hidden" src="{{ $product->image_url }}" alt="" />
+                    <img class="w-full dark:hidden" src="{{url('/products/' . $product->image_url)}}" alt="" />
                 </div>
 
                 <div class="mt-6 sm:mt-8 lg:mt-0">
@@ -36,7 +37,7 @@
                         </p>
                         <a href="#"
                             class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white">
-                            {{ $userReviewCount }} Reviews
+                            {{ $userReviewCount }} {{__('reviews')}}
                         </a>
                     </div>
 
@@ -47,22 +48,20 @@
                             @csrf
                             @method('POST')
                             <div class="mt-6">
-                                <label class="" for="quantity">Quantity (between 1 and 5):</label>
-                                <input class="ml-6" type="number" id="quantity" name="quantity" value="1" min="1"
-                                    max="5" />
+                                <label class="" for="quantity">{{__('Quantity')}} ({{__('between 1 and 5')}}):</label>
+                                <input class="ml-6" type="number" id="quantity" name="quantity" value="1" min="1" max="5" />
                             </div>
 
                             <div class="mt-6">
                                 <button type="submit"
-                                    class="inline items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Add
-                                    to
-                                    cart
+                                    class="inline items-center justify-center py-2.5 px-5 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                                    {{__('Add to cart')}}
                                 </button>
 
                                 <a href="#" title=""
-                                    class="text-white mt-4 sm:mt-0 bg-blue-600 hover:bg-blue-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-primary-600 dark:hover:bg-primary-700 focus:outline-none inline items-center justify-center"
+                                    class="text-white mt-4 sm:mt-0 bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 focus:outline-none inline items-center justify-center"
                                     role="button">
-                                    Buy now
+                                    {{__('Buy now')}}
                                 </a>
                             </div>
                         </form>
@@ -131,8 +130,8 @@
                                 d="m4.178 20.801 6.758-4.91 6.756 4.91-2.58-7.946 6.758-4.91h-8.352L10.936 0 8.354 7.945H0l6.758 4.91-2.58 7.946z" />
                         </svg>
                     @endfor
-                    <a class="ml-4">Edit</a>
-                    <a class="ml-4">Delete</a>
+                    <a class="ml-4">{{__('Edit')}}</a>
+                    <a class="ml-4">{{__('Delete')}}</a>
                 </div>
                 <p class="mt-2 text-gray-600">{{ $userReview['comment'] }}</p>
             </div>

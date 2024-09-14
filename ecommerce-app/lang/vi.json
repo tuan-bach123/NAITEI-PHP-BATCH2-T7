@@ -151,7 +151,7 @@
     "Moved Permanently": "Chuyển Hướng Vĩnh Viễn",
     "Multi-Status": "Đa Trạng Thái",
     "Multiple Choices": "Nhiều Sự Lựa Chọn",
-    "My account": "Tài khoản",
+    "My Account": "Tài khoản",
     "My Cart": "Giỏ hàng",
     "My cart": "Giỏ hàng",
     "My Orders": "Đơn hàng",
@@ -318,5 +318,16 @@
     "Your email address is unverified.": "Địa chỉ email của bạn chưa được xác minh.",
     "Gift Ideas": "Quà tặng",
     "Today's Deals": "Ưu đãi",
-    "Sell": "Bán"
+    "Sell": "Bán",
+    "Favourites": "Yêu thích",
+    "Sign Out": "Đăng xuất",
+    "Delivery Addresses": "Địa chỉ giao hàng",
+    "Billing Data": "Dữ liệu hoá đơn",
+    "Fast Delivery": "Giao hàng nhanh",
+    "Best Price": "Giá tốt nhất",
+    "or": "hoặc",
+    "Do you have a voucher or gift card": "Bạn có voucher hay thẻ quà tặng",
+    "Apply Code": "Áp dụng mã",
+    "Add to Favourites": "Yêu thích",
+    "Remove": "Xoá"
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderConfirmed;
 use App\Models\OrderItem;
 use App\Models\OrderStatus;
 use App\Models\OrderDetail;
@@ -10,7 +11,7 @@ use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Mail;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class OrderController extends Controller
@@ -18,7 +19,7 @@ class OrderController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-        $orderItems = $user->shoppingCarts->last()->shoppingCartItems;
+        $orderItems = $user->shoppingCarts->first()->shoppingCartItems;
 
         $userLocation = $defaultAddress = $user->userAddresses()->where('is_default', true)->first();
         $defaultAddress = $userLocation ? $userLocation->address : null;
@@ -57,6 +58,14 @@ class OrderController extends Controller
                 ]);
             }
         });
+
+        $mailedOrderDetail = OrderDetail::with('user')
+            ->where('user_id', $request->user()->id)
+            ->get()
+            ->sortBy('order_details.order_date')
+            ->first();
+
+        Mail::to($request->user()->email)->send(new OrderConfirmed($mailedOrderDetail, $request->user()->first_name));
 
         return redirect()->route('orders.confirmation', ['order_id' => $orderDetail->id]);
     }
