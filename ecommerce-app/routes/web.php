@@ -1,24 +1,18 @@
 <?php
 
+use App\Http\Middleware\CheckOwner;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Middleware\CheckOwner;
-
-use App\Models\User;
-use App\Models\Product;
-use App\Models\ProductCategory;
-
-use App\Http\Controllers\UserController;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\DashboardController;
-
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmailController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\LanguageController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserReviewController;
 use App\Http\Controllers\OrderDetailController;
 
@@ -28,10 +22,15 @@ use App\Http\Controllers\OrderDetailController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
-
+Route::post('/orders', [OrderController::class, 'store'])->name('orders.store');
+Route::get(
+    '/orders/confirmation/{order_id}',
+    [OrderController::class, 'showConfirmation']
+)->name('orders.confirmation');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 Route::get('send_email', [EmailController::class, 'store'])->name('email.store');
 
+require __DIR__ . '/auth.php';
 // Profile management routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -40,31 +39,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/order-details', [OrderDetailController::class, 'index'])->name('order-details.index');
     Route::get('/order-details/{orderDetail}', [OrderDetailController::class, 'show'])->name('order-details.show');
-    
+
     Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
     Route::post('/cart/add', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/removeItem', [CartController::class, 'removeItem'])->name('cart.removeItem');
-});
-
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
-    Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-    Route::get('/users/edit/{user}', [UserController::class, 'edit'])->name('users.edit');
-    Route::post('/users', [UserController::class, 'store'])->name('users.store');
-    Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-    Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
-
-    Route::get('/admin', function () {
-        // Dummy data for the admin view
-        $users = User::all();
-
-        $categories = ProductCategory::all();
-
-        $products = Product::all();
-
-        return view('admin', ['users' => $users, 'categories' => $categories, 'products' => $products]);
-    })->name('admin.dashboard');
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
@@ -80,6 +58,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::delete('/products/{product}', [ProductController::class, 'destroy'])->name('products.destroy');
+
+    require __DIR__ . '/admin/dashboard.php';
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -92,9 +72,18 @@ Route::middleware(['auth'])->group(function () {
     });
 });
 
+Route::middleware(['auth', 'admin'])->prefix('admin/crud')->group(function () {
+    require __DIR__ . '/admin/users.php';
+    // require __DIR__ . '/admin/categories.php';
+    require __DIR__ . '/admin/products.php';
+});
+
 Route::get('/products', [CategoryController::class, 'index'])->name('products.index');
 Route::get('/products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('/language/{lang}', [LanguageController::class, 'changeLanguage'])->name('locale');
 
+Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
+Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle'])->name('google-callback');
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+

@@ -1,3 +1,4 @@
+{{-- TODO: Breaking form into blade component --}}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -6,11 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css" rel="stylesheet" />
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
     <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
-        <form action="#" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+        <form action="/orders" method="POST" class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            @csrf
             <div class="mx-auto max-w-3xl">
                 <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Order summary</h2>
 
@@ -18,44 +21,27 @@
                     <h4 class="text-lg font-semibold text-gray-900 dark:text-white">Billing & Delivery information</h4>
 
                     <dl>
-                        <dt class="text-base font-medium text-gray-900 dark:text-white">Individual</dt>
-                        <dd class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">Bonnie Green - +1 234
-                            567
-                            890, San Francisco, California, United States, 3454, Scott Street</dd>
+                        <dt class="text-base font-medium text-gray-900 dark:text-white">
+                            {{ $user->first_name . ' ' . $user->last_name }}
+                        </dt>
+
+                        @if ($defaultAddress)
+                            <dd id="selectedAddress" class="mt-1 text-base font-normal text-gray-500 dark:text-gray-400">
+                                {{ $defaultAddress->address_line1 . ' ' . $defaultAddress->address_line2 . ' ' . $defaultAddress->city . ' ' . $defaultAddress->state . ' ' . $defaultAddress->postal_code }}
+                            </dd>
+                        @endif
                     </dl>
 
                     <button type="button" data-modal-target="billingInformationModal"
                         data-modal-toggle="billingInformationModal"
-                        class="text-base font-medium text-primary-700 hover:underline dark:text-primary-500">Edit</button>
+                        class="text-base font-medium text-blue-700 hover:underline dark:text-blue-500">Edit</button>
                 </div>
 
                 <div class="mt-6 sm:mt-8">
                     <div class="relative overflow-x-auto border-b border-gray-200 dark:border-gray-800">
                         <table class="w-full text-left font-medium text-gray-900 dark:text-white md:table-fixed">
-                            @foreach ($orders as $order)
-                                <tbody class="divide-y divide-gray-200 dark:divide-gray-800">
-                                    <tr>
-                                        <td class="whitespace-nowrap py-4 md:w-[384px]">
-                                            <div class="flex items-center gap-4">
-                                                <a href="#"
-                                                    class="flex items-center aspect-square w-10 h-10 shrink-0">
-                                                    <img class="h-auto w-full max-h-full dark:hidden"
-                                                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg"
-                                                        alt="watch image" />
-                                                    <img class="hidden h-auto w-full max-h-full dark:block"
-                                                        src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg"
-                                                        alt="watch image" />
-                                                    <a href="#" class="hover:underline">Apple Watch SE</a>
-                                            </div>
-                                        </td>
-
-                                        <td class="p-4 text-base font-normal text-gray-900 dark:text-white">x2</td>
-
-                                        <td class="p-4 text-right text-base font-bold text-gray-900 dark:text-white">
-                                            $799
-                                        </td>
-                                    </tr>
-                                </tbody>
+                            @foreach ($orderItems as $orderItem)
+                                <x-orders.order-item :orderItem="$orderItem" />
                             @endforeach
                         </table>
                     </div>
@@ -67,34 +53,35 @@
                             <div class="space-y-2">
                                 <dl class="flex items-center justify-between gap-4">
                                     <dt class="text-gray-500 dark:text-gray-400">Original price</dt>
-                                    <dd class="text-base font-medium text-gray-900 dark:text-white">$6,592.00</dd>
+                                    <dd class="text-base font-medium text-gray-900 dark:text-white">${{ $totalPrice }}
+                                    </dd>
                                 </dl>
 
                                 <dl class="flex items-center justify-between gap-4">
                                     <dt class="text-gray-500 dark:text-gray-400">Savings</dt>
-                                    <dd class="text-base font-medium text-green-500">-$299.00</dd>
+                                    <dd class="text-base font-medium text-green-500">-$000.00</dd>
                                 </dl>
 
                                 <dl class="flex items-center justify-between gap-4">
                                     <dt class="text-gray-500 dark:text-gray-400">Store Pickup</dt>
-                                    <dd class="text-base font-medium text-gray-900 dark:text-white">$99</dd>
+                                    <dd class="text-base font-medium text-gray-900 dark:text-white">$00</dd>
                                 </dl>
 
                                 <dl class="flex items-center justify-between gap-4">
                                     <dt class="text-gray-500 dark:text-gray-400">Tax</dt>
-                                    <dd class="text-base font-medium text-gray-900 dark:text-white">$799</dd>
+                                    <dd class="text-base font-medium text-gray-900 dark:text-white">$000</dd>
                                 </dl>
                             </div>
 
                             <dl
                                 class="flex items-center justify-between gap-4 border-t border-gray-200 pt-2 dark:border-gray-700">
                                 <dt class="text-lg font-bold text-gray-900 dark:text-white">Total</dt>
-                                <dd class="text-lg font-bold text-gray-900 dark:text-white">$7,191.00</dd>
+                                <dd class="text-lg font-bold text-gray-900 dark:text-white">${{ $totalPrice }}</dd>
                             </dl>
                         </div>
 
                         <div class="flex items-start sm:items-center">
-                            <input id="terms-checkbox-2" type="checkbox" value=""
+                            <input id="terms-checkbox-2" type="checkbox" name="terms" value="1"
                                 class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                             <label for="terms-checkbox-2"
                                 class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> I agree with the <a
@@ -107,11 +94,28 @@
                         <div class="gap-4 sm:flex sm:items-center">
                             <button type="button"
                                 class="w-full rounded-lg  border border-gray-200 bg-white px-5  py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Return
-                                to Shopping</button>
+                                to Shopping
+                            </button>
+                            <!-- Order Details -->
+                            {{-- <input type="hidden" name="user_id" value="{{ Auth::user()->id }}"> --}}
+                            <input type="hidden" name="user_id" value="{{ $user->id }}">
+                            <input type="hidden" name="order_date" value="{{ now() }}">
+                            <input type="hidden" name="address_id"
+                                value="{{ $defaultAddress ? $defaultAddress->id : null }}">
+                            <input type="hidden" name="order_total" value="{{ $totalPrice }}">
 
+                            <!-- Order Items -->
+                            @foreach ($orderItems as $item)
+                                <input type="hidden" name="order_items[{{ $loop->index }}][product_id]"
+                                    value="{{ $item->product_id }}">
+                                <input type="hidden" name="order_items[{{ $loop->index }}][qty]" value="{{ $item->qty }}">
+                                <input type="hidden" name="order_items[{{ $loop->index }}][price]"
+                                    value="{{ $item->product()->price }}">
+                            @endforeach
                             <button type="submit"
-                                class="mt-4 flex w-full items-center justify-center rounded-lg bg-primary-700  px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300  dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 sm:mt-0">Send
-                                the order</button>
+                                class="mt-4 flex w-full items-center justify-center rounded-lg bg-blue-700  px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-primary-800 sm:mt-0">Send
+                                the order
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -150,8 +154,7 @@
                                     class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                                 <label for="company_address_billing_modal"
                                     class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300"> Order as a
-                                    company
-                                </label>
+                                    company </label>
                             </div>
                         </div>
 
@@ -182,8 +185,8 @@
                                 </label>
                                 <svg data-tooltip-target="saved-address-modal-desc-2" data-tooltip-trigger="hover"
                                     class="h-4 w-4 text-gray-400 hover:text-gray-900 dark:text-gray-500 dark:hover:text-white"
-                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                                    height="24" fill="currentColor" viewBox="0 0 24 24">
+                                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    fill="currentColor" viewBox="0 0 24 24">
                                     <path fill-rule="evenodd"
                                         d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
                                         clip-rule="evenodd" />
@@ -232,10 +235,9 @@
                                     type="button">
                                     <svg fill="none" aria-hidden="true" class="me-2 h-4 w-4" viewBox="0 0 20 15">
                                         <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
-                                        <mask id="a" style="mask-type:luminance" width="20"
-                                            height="15" x="0" y="0" maskUnits="userSpaceOnUse">
-                                            <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                rx="2" />
+                                        <mask id="a" style="mask-type:luminance" width="20" height="15" x="0" y="0"
+                                            maskUnits="userSpaceOnUse">
+                                            <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                                         </mask>
                                         <g mask="url(#a)">
                                             <path fill="#D02F44" fill-rule="evenodd"
@@ -249,9 +251,8 @@
                                             </g>
                                         </g>
                                         <defs>
-                                            <linearGradient id="paint0_linear_343_121520" x1=".933"
-                                                x2=".933" y1="1.433" y2="6.1"
-                                                gradientUnits="userSpaceOnUse">
+                                            <linearGradient id="paint0_linear_343_121520" x1=".933" x2=".933" y1="1.433"
+                                                y2="6.1" gradientUnits="userSpaceOnUse">
                                                 <stop stop-color="#fff" />
                                                 <stop offset="1" stop-color="#F0F0F0" />
                                             </linearGradient>
@@ -272,8 +273,8 @@
                                     </svg>
                                     +1
                                     <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        fill="none" viewBox="0 0 24 24">
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m19 9-7 7-7-7" />
                                     </svg>
@@ -289,13 +290,10 @@
                                                 <span class="inline-flex items-center">
                                                     <svg fill="none" aria-hidden="true" class="me-2 h-4 w-4"
                                                         viewBox="0 0 20 15">
-                                                        <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                            rx="2" />
-                                                        <mask id="a" style="mask-type:luminance"
-                                                            width="20" height="15" x="0" y="0"
-                                                            maskUnits="userSpaceOnUse">
-                                                            <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                                rx="2" />
+                                                        <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
+                                                        <mask id="a" style="mask-type:luminance" width="20" height="15"
+                                                            x="0" y="0" maskUnits="userSpaceOnUse">
+                                                            <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                                                         </mask>
                                                         <g mask="url(#a)">
                                                             <path fill="#D02F44" fill-rule="evenodd"
@@ -310,9 +308,9 @@
                                                             </g>
                                                         </g>
                                                         <defs>
-                                                            <linearGradient id="paint0_linear_343_121520"
-                                                                x1=".933" x2=".933" y1="1.433"
-                                                                y2="6.1" gradientUnits="userSpaceOnUse">
+                                                            <linearGradient id="paint0_linear_343_121520" x1=".933"
+                                                                x2=".933" y1="1.433" y2="6.1"
+                                                                gradientUnits="userSpaceOnUse">
                                                                 <stop stop-color="#fff" />
                                                                 <stop offset="1" stop-color="#F0F0F0" />
                                                             </linearGradient>
@@ -345,13 +343,10 @@
                                                 role="menuitem">
                                                 <span class="inline-flex items-center">
                                                     <svg class="me-2 h-4 w-4" fill="none" viewBox="0 0 20 15">
-                                                        <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                            rx="2" />
-                                                        <mask id="a" style="mask-type:luminance"
-                                                            width="20" height="15" x="0" y="0"
-                                                            maskUnits="userSpaceOnUse">
-                                                            <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                                rx="2" />
+                                                        <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
+                                                        <mask id="a" style="mask-type:luminance" width="20" height="15"
+                                                            x="0" y="0" maskUnits="userSpaceOnUse">
+                                                            <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                                                         </mask>
                                                         <g mask="url(#a)">
                                                             <path fill="#0A17A7" d="M0 .5h19.6v14H0z" />
@@ -377,13 +372,10 @@
                                                 <span class="inline-flex items-center">
                                                     <svg class="me-2 h-4 w-4" fill="none" viewBox="0 0 20 15"
                                                         xmlns="http://www.w3.org/2000/svg">
-                                                        <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                            rx="2" />
-                                                        <mask id="a" style="mask-type:luminance"
-                                                            width="20" height="15" x="0" y="0"
-                                                            maskUnits="userSpaceOnUse">
-                                                            <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                                rx="2" />
+                                                        <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
+                                                        <mask id="a" style="mask-type:luminance" width="20" height="15"
+                                                            x="0" y="0" maskUnits="userSpaceOnUse">
+                                                            <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                                                         </mask>
                                                         <g mask="url(#a)">
                                                             <path fill="#0A17A7" d="M0 .5h19.6v14H0z" />
@@ -402,15 +394,13 @@
                                                                 clip-rule="evenodd" />
                                                         </g>
                                                         <defs>
-                                                            <linearGradient id="paint0_linear_374_135177"
-                                                                x1="0" x2="0" y1=".5"
-                                                                y2="7.5" gradientUnits="userSpaceOnUse">
+                                                            <linearGradient id="paint0_linear_374_135177" x1="0" x2="0"
+                                                                y1=".5" y2="7.5" gradientUnits="userSpaceOnUse">
                                                                 <stop stop-color="#fff" />
                                                                 <stop offset="1" stop-color="#F0F0F0" />
                                                             </linearGradient>
-                                                            <linearGradient id="paint1_linear_374_135177"
-                                                                x1="0" x2="0" y1=".5"
-                                                                y2="7.033" gradientUnits="userSpaceOnUse">
+                                                            <linearGradient id="paint1_linear_374_135177" x1="0" x2="0"
+                                                                y1=".5" y2="7.033" gradientUnits="userSpaceOnUse">
                                                                 <stop stop-color="#FF2E3B" />
                                                                 <stop offset="1" stop-color="#FC0D1B" />
                                                             </linearGradient>
@@ -426,13 +416,10 @@
                                                 role="menuitem">
                                                 <span class="inline-flex items-center">
                                                     <svg class="me-2 h-4 w-4" fill="none" viewBox="0 0 20 15">
-                                                        <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                            rx="2" />
-                                                        <mask id="a" style="mask-type:luminance"
-                                                            width="20" height="15" x="0" y="0"
-                                                            maskUnits="userSpaceOnUse">
-                                                            <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                                rx="2" />
+                                                        <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
+                                                        <mask id="a" style="mask-type:luminance" width="20" height="15"
+                                                            x="0" y="0" maskUnits="userSpaceOnUse">
+                                                            <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                                                         </mask>
                                                         <g mask="url(#a)">
                                                             <path fill="#262626" fill-rule="evenodd"
@@ -495,15 +482,12 @@
                                                 role="menuitem">
                                                 <span class="inline-flex items-center">
                                                     <svg class="me-2 h-4 w-4" fill="none" viewBox="0 0 20 15">
-                                                        <rect width="19.1" height="13.5" x=".25" y=".75"
-                                                            fill="#fff" stroke="#F5F5F5" stroke-width=".5"
-                                                            rx="1.75" />
-                                                        <mask id="a" style="mask-type:luminance"
-                                                            width="20" height="15" x="0" y="0"
-                                                            maskUnits="userSpaceOnUse">
-                                                            <rect width="19.1" height="13.5" x=".25" y=".75"
-                                                                fill="#fff" stroke="#fff" stroke-width=".5"
-                                                                rx="1.75" />
+                                                        <rect width="19.1" height="13.5" x=".25" y=".75" fill="#fff"
+                                                            stroke="#F5F5F5" stroke-width=".5" rx="1.75" />
+                                                        <mask id="a" style="mask-type:luminance" width="20" height="15"
+                                                            x="0" y="0" maskUnits="userSpaceOnUse">
+                                                            <rect width="19.1" height="13.5" x=".25" y=".75" fill="#fff"
+                                                                stroke="#fff" stroke-width=".5" rx="1.75" />
                                                         </mask>
                                                         <g mask="url(#a)">
                                                             <path fill="#F44653" d="M13.067.5H19.6v14h-6.533z" />
@@ -521,13 +505,10 @@
                                                 role="menuitem">
                                                 <span class="inline-flex items-center">
                                                     <svg class="me-2 h-4 w-4" fill="none" viewBox="0 0 20 15">
-                                                        <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                            rx="2" />
-                                                        <mask id="a" style="mask-type:luminance"
-                                                            width="20" height="15" x="0" y="0"
-                                                            maskUnits="userSpaceOnUse">
-                                                            <rect width="19.6" height="14" y=".5" fill="#fff"
-                                                                rx="2" />
+                                                        <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
+                                                        <mask id="a" style="mask-type:luminance" width="20" height="15"
+                                                            x="0" y="0" maskUnits="userSpaceOnUse">
+                                                            <rect width="19.6" height="14" y=".5" fill="#fff" rx="2" />
                                                         </mask>
                                                         <g mask="url(#a)">
                                                             <path fill="#262626" fill-rule="evenodd"
@@ -636,7 +617,7 @@
                     </div>
                     <div class="border-t border-gray-200 pt-4 dark:border-gray-700 md:pt-5">
                         <button type="submit"
-                            class="me-2 inline-flex items-center rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Save
+                            class="me-2 inline-flex items-center rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-primary-800">Save
                             information</button>
                         <button type="button" data-modal-toggle="billingInformationModal"
                             class="me-2 rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Cancel</button>
@@ -645,7 +626,6 @@
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 </body>
 
 </html>
