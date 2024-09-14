@@ -26,33 +26,28 @@
 
                     <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
                         <li>
-                            <a href="#" title=""
-                                class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                                Home
+                            <a href="/" title="" class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                            {{__('Home')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title=""
-                                class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                                Best Sellers
+                            <a href="#" title="" class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                            {{__('Best Sellers')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title=""
-                                class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                                Gift Ideas
+                            <a href="#" title="" class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                            {{__('Gift Ideas')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title=""
-                                class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                                Today's Deals
+                            <a href="#" title="" class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                            {{__('Today\'s Deals')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title=""
-                                class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                                Sell
+                            <a href="#" title="" class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                            {{__('Sell')}}
                             </a>
                         </li>
                     </ul>
@@ -72,7 +67,7 @@
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M5 4h1.5L9 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm-8.5-3h9.25L19 7H7.312" />
                             </svg>
-                            <span class="hidden sm:flex">My Cart</span>
+                            <span class="hidden sm:flex">{{__('My Cart')}}</span>
                         </button>
 
                         <div id="myCartDropdown1"
@@ -245,7 +240,7 @@
                                 <path stroke="currentColor" stroke-width="2"
                                     d="M7 17v1a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-1a3 3 0 0 0-3-3h-4a3 3 0 0 0-3 3Zm8-9a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
                             </svg>
-                            Account
+                            {{__('Account')}}
                             <svg class="w-4 h-4 text-gray-900 dark:text-white ms-1" aria-hidden="true"
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -258,22 +253,22 @@
                             <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
                                 <li><a href="/profile" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        My Account </a></li>
+                                        {{__('My Account')}} </a></li>
+                                <li><a href="/order-details" title=""
+                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
+                                        {{__('My Orders')}} </a></li>
                                 <li><a href="#" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        My Orders </a></li>
+                                        {{__('Settings')}} </a></li>
                                 <li><a href="#" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Settings </a></li>
+                                        {{__('Favourites')}} </a></li>
                                 <li><a href="#" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Favourites </a></li>
+                                        {{__('Delivery Addresses')}} </a></li>
                                 <li><a href="#" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Delivery Addresses </a></li>
-                                <li><a href="#" title=""
-                                        class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
-                                        Billing Data </a></li>
+                                        {{__('Billing Data')}} </a></li>
                             </ul>
 
                             <div class="p-2 text-sm font-medium text-gray-900 dark:text-white">
@@ -281,7 +276,7 @@
                                     @csrf
                                     <button
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600"
-                                        type="submit">Sign Out
+                                        type="submit">{{__('Sign Out')}}
                                     </button>
 
                                 </form>

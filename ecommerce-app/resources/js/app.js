@@ -1,3 +1,4 @@
+import 'flowbite';
 import './bootstrap';
 import 'flowbite';
 
@@ -19,4 +20,3 @@ function sidebarClose() {
 
 window.sidebarOpen = sidebarOpen;
 window.sidebarClose = sidebarClose;
-

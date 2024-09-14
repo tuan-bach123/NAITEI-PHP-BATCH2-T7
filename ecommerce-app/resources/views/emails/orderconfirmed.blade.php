@@ -13,4 +13,4 @@
 <p>Thank you for shopping with us!</p>
 
 <p>Sincerely,</p>
-<p>My Shop</p>
+<p>Soppe</p>
