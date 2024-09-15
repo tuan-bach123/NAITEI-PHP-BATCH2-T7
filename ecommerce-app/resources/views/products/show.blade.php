@@ -4,7 +4,7 @@
         <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                    <img class="w-full dark:hidden" src="{{url('/products/' . $product->image_url)}}" alt="" />
+                    <img class="w-full dark:hidden" src="{{ url('/products/' . $product->image_url) }}" alt="{{ $product->image_url }}" />
                 </div>
 
                 <div class="mt-6 sm:mt-8 lg:mt-0">
@@ -49,7 +49,8 @@
                             @method('POST')
                             <div class="mt-6">
                                 <label class="" for="quantity">{{__('Quantity')}} ({{__('between 1 and 5')}}):</label>
-                                <input class="ml-6" type="number" id="quantity" name="quantity" value="1" min="1" max="5" />
+                                <input class="ml-6" type="number" id="quantity" name="quantity" value="1" min="1"
+                                    max="5" />
                             </div>
 
                             <div class="mt-6">

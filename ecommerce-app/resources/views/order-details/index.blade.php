@@ -1,18 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>My Orders</title>
-	@vite('resources/css/app.css') <!-- Tailwind CSS -->
-</head>
-
-<body class="bg-gray-100 flex flex-col min-h-screen">
-
-	<!-- Navigation Bar -->
-	@include('layouts.navigation')
-
+<x-layout>
 	<section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
   		<div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
     		<div class="mx-auto max-w-5xl">
@@ -48,8 +34,9 @@
 
 			<div class="mt-6 flow-root sm:mt-8">
         		<div class="divide-y divide-gray-200 dark:divide-gray-700">
-					@foreach ($orders as $order)
+					@foreach ($orders as $key=>$order)
 					<x-order
+						:count="$key"
 						:id="$order->id"
 						:date="$order->order_date"
 						:total="$order->order_total"
@@ -96,6 +83,5 @@
 			</nav>
 		</div>
 	</section>
+</x-layout>
 
-</body>
-</html>

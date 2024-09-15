@@ -11,11 +11,12 @@
         </div>
     </div>
 
-    <section class="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
+    <section class="bg-primary-50 py-8 antialiased dark:bg-primary-900 md:py-12">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <!-- Heading & Filters -->
             <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">
                 <div>
+                    <!--
                     <nav class="flex" aria-label="Breadcrumb">
                         <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
                             <li class="inline-flex items-center">
@@ -55,11 +56,11 @@
                             </li>
                         </ol>
                     </nav>
-
-                    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Electronics
+                    -->
+                    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Products
                     </h2>
-
                 </div>
+
                 <div class="flex items-center space-x-4">
                     <button data-modal-toggle="filterModal" data-modal-target="filterModal" type="button"
                         class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700 sm:w-auto">
@@ -130,7 +131,7 @@
             </div>
             <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
                 @foreach ($products as $product)
-                    <x-product :product="$product" />   
+                    <x-product :product="$product" />
                 @endforeach
             </div>
             <div>
@@ -696,7 +697,7 @@
 
                                                 <label for="blue"
                                                     class="ml-2 flex items-center text-sm font-medium text-gray-900 dark:text-gray-300">
-                                                    <div class="mr-2 h-3.5 w-3.5 rounded-full bg-primary-600"></div>
+                                                    <div class="mr-2 h-3.5 w-3.5 rounded-full bg-blue-600"></div>
                                                     Blue
                                                 </label>
                                             </div>
@@ -1051,7 +1052,6 @@
                                 </div>
 
                                 <div>
-
                                     <h6 class="mb-2 text-sm font-medium text-black dark:text-white">Delivery type
                                     </h6>
 
@@ -1080,7 +1080,6 @@
                                             </label>
                                         </li>
                                         <li>
-
                                             <input type="radio" id="delivery-asia" name="delivery" value="delivery-asia"
                                                 class="peer hidden" checked />
 
@@ -1111,7 +1110,7 @@
                         <!-- Modal footer -->
                         <div class="flex items-center space-x-4 rounded-b p-4 dark:border-gray-600 md:p-5">
                             <button type="submit"
-                                class="rounded-lg bg-primary-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">Show
+                                class="rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-primary-800">Show
                                 50 results</button>
                             <button type="reset"
                                 class="rounded-lg border border-gray-200 bg-white px-5 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white dark:focus:ring-gray-700">Reset</button>

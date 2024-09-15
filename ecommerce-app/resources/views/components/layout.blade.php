@@ -26,28 +26,33 @@
 
                     <ul class="hidden lg:flex items-center justify-start gap-6 md:gap-8 py-3 sm:justify-center">
                         <li>
-                            <a href="/" title="" class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            {{__('Home')}}
+                            <a href="/" title=""
+                                class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                                {{__('Home')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title="" class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            {{__('Best Sellers')}}
+                            <a href="#" title=""
+                                class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                                {{__('Best Sellers')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title="" class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            {{__('Gift Ideas')}}
+                            <a href="#" title=""
+                                class="flex text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                                {{__('Gift Ideas')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title="" class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            {{__('Today\'s Deals')}}
+                            <a href="#" title=""
+                                class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                                {{__('Today\'s Deals')}}
                             </a>
                         </li>
                         <li class="shrink-0">
-                            <a href="#" title="" class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
-                            {{__('Sell')}}
+                            <a href="#" title=""
+                                class="text-sm font-medium text-gray-900 hover:text-primary-700 dark:text-white dark:hover:text-primary-500">
+                                {{__('Sell')}}
                             </a>
                         </li>
                     </ul>
@@ -55,8 +60,7 @@
 
                 @auth
                     <div class="flex items-center lg:space-x-2">
-                        <button id="myCartDropdownButton1" type="button"
-                            onclick="sidebarOpen()"
+                        <button id="myCartDropdownButton1" type="button" onclick="sidebarOpen()"
                             class="inline-flex items-center rounded-lg justify-center p-2 hover:bg-gray-100 dark:hover:bg-gray-700 text-sm font-medium leading-none text-gray-900 dark:text-white">
                             <span class="sr-only">
                                 Cart
@@ -343,6 +347,310 @@
             {{ $slot }}
         </main>
     </div>
+
+    <footer class="bg-white antialiased dark:bg-gray-800">
+        <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+            <div class="border-b border-gray-100 py-6 dark:border-gray-700 md:py-8 lg:py-16">
+                <div class="items-start gap-6 md:gap-8 lg:flex 2xl:gap-24">
+                    <div class="grid min-w-0 flex-1 grid-cols-2 gap-6 md:gap-8 xl:grid-cols-3">
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Company</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                                        About </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                                        Premium </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                                        Blog </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                                        Affiliate Program </a>
+                                </li>
+
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">
+                                        Get Coupon </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Order &
+                                Purchases</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Order
+                                        Status</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Track
+                                        Your
+                                        Order</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Purchase
+                                        History</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Returns
+                                        &
+                                        Refunds</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Payment
+                                        Methods</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Support &
+                                Services</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Contact
+                                        Support</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">FAQs</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Service
+                                        Centers</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Warranty
+                                        Information</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Product
+                                        Manuals</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Partnerships
+                            </h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Partner
+                                        With Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Become
+                                        a
+                                        Supplier</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Affiliate
+                                        Program</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Collaboration
+                                        Opportunities</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Sponsorship
+                                        Requests</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Payment
+                                Options</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Credit
+                                        & Debit
+                                        Cards</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">PayPal</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Bank
+                                        Transfers</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Installment
+                                        Plans</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Gift
+                                        Cards</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Rewards</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Reward
+                                        Points</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Referral
+                                        Program</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">VIP
+                                        Membership</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Exclusive
+                                        Offers</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Redeem
+                                        Rewards</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Trade
+                                Assurance</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">What
+                                        is Trade
+                                        Assurance?</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">How
+                                        It Works</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Buyer
+                                        Protection</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Seller
+                                        Guarantee</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">FAQs</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Sell on
+                                Flowbite</h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Seller
+                                        Registration</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">How
+                                        to Sell</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Seller
+                                        Policies</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Seller
+                                        Resources</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Seller
+                                        Support</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h6 class="mb-4 text-sm font-semibold uppercase text-gray-900 dark:text-white">Get Support
+                            </h6>
+                            <ul class="space-y-3">
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Contact
+                                        Us</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Help
+                                        Center</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Community
+                                        Forums</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Technical
+                                        Support</a>
+                                </li>
+                                <li>
+                                    <a href="#" title=""
+                                        class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white">Live
+                                        Chat</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

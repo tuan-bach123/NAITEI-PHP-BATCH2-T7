@@ -12,6 +12,7 @@ class CategoryController extends Controller
     //     $categories = ProductCategory::all();
     //     return view('admin.categories.index',compact('categories'));
     // }
+    
     public function index()
     {
         $categories = ProductCategory::all();
@@ -31,7 +32,7 @@ class CategoryController extends Controller
         ProductCategory::create($validated);
 
         return redirect()->route('/admin')
-                        ->with('success','Category created successfully.');
+            ->with('success', 'Category created successfully.');
     }
 
     public function edit($id)

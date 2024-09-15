@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\ProductCategory;
+
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    public function __construct() {}
+    public function __construct()
+    {
+    }
 
     public function index()
     {
@@ -17,11 +21,12 @@ class HomeController extends Controller
             // ->orderByDesc(['trendRating'])
             ->paginate(20);
 
-        // dd($products->toArray());
+        $category = ProductCategory::all()->all();
 
         return view('home', [
             'user' => Auth::user(),
             'products' => $products,
+            'category' => $category,
         ]);
     }
 }

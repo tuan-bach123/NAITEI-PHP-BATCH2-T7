@@ -1,11 +1,12 @@
 @props(
-  ['id', 'date', 'total', 'status']
+  [ 'count', 'id', 'date', 'total', 'status']
 )
+
 <div class="flex flex-wrap items-center gap-y-4 py-6">
 	<dl class="w-1/2 sm:w-1/4 lg:w-auto lg:flex-1">
 		<dt class="text-base font-medium text-gray-500 dark:text-gray-400">{{__('Order ID')}}:</dt>
 		<dd class="mt-1.5 text-base font-semibold text-gray-900 dark:text-white">
-			<a href="{{ route('order-details.show', ['orderDetail' => $id]) }}" class="hover:underline">{{ $id }}</a>
+			<a href="{{ route('order-details.show', ['orderDetail' => $id]) }}" class="hover:underline">{{ $count + 1 }}</a>
 		</dd>
 	</dl>
 
