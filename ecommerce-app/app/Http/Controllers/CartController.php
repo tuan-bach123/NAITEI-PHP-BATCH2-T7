@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-
 use Str;
 
 use App\Models\Product;

@@ -21,7 +21,7 @@ class OrderController extends Controller
         $user = Auth::user();
         $orderItems = $user->shoppingCarts->first()->shoppingCartItems;
 
-        $userLocation = $defaultAddress = $user->userAddresses()->where('is_default', true)->first();
+        $userLocation = $user->userAddresses()->where('is_default', true)->first();
         $defaultAddress = $userLocation ? $userLocation->address : null;
 
         $totalPrice = $orderItems->sum(function ($item) {
@@ -67,7 +67,7 @@ class OrderController extends Controller
 
         Mail::to($request->user()->email)->send(new OrderConfirmed($mailedOrderDetail, $request->user()->first_name));
 
-        return redirect()->route('orders.confirmation', ['order_id' => $orderDetail->id]);
+        return redirect('/order-details');
     }
 
     public function showConfirmation($order_id): View
