@@ -1,4 +1,6 @@
-<x-admin.layout>
+@extends('components.admin.layout')
+
+@section('content')
     <div class="p-4 relative overflow-x-auto shadow-md sm:rounded-lg">
         <div
             class="flex items-center justify-between flex-column md:flex-row flex-wrap space-y-4 md:space-y-0 py-4 bg-white dark:bg-gray-900">
@@ -108,7 +110,7 @@
                             </svg>
                             Add product
                         </button>
-                        <a href="#"
+                        <a href="{{route('admin.products.export')}}"
                            class="inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-gray-900 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 focus:ring-4 focus:ring-primary-300 sm:w-auto dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700 dark:focus:ring-gray-700">
                             <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -121,6 +123,27 @@
                     </div>
                 </div>
             </div>
+            @if ($errors->any())
+
+                <div class="flex p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400"
+                     role="alert">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true"
+                         xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                        <path
+                            d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+                    </svg>
+                    <span class="sr-only">Danger</span>
+                    <div>
+                        <span class="font-medium">Ensure that these requirements are met:</span>
+                        <ul class="mt-1.5 list-disc list-inside">
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+
+            @endif
 
         </div>
         <div class="flex flex-col">
@@ -177,13 +200,12 @@
                                             <label for="checkbox-table-search-1" class="sr-only">checkbox</label>
                                         </div>
                                     </td>
-                                    <td
-                                        class="p-4">
-                                        <img class="w-16 md:w-32 max-w-full max-h-full" src="{{ $product->image_url }}"
-                                             alt="" srcset="">
+                                    <td class="p-4">
+                                        <img class="w-16 md:w-32 max-w-full max-h-full"
+                                             src="{{ Vite::asset('storage/app/' . $product->image_url) }}"
+                                             alt="Product Image" srcset="">
                                     </td>
-                                    <td
-                                        class="p-4 text-base font-semibold text-gray-900 dark:text-white">
+                                    <td class="p-4 text-base font-semibold text-gray-900 dark:text-white">
                                         {{ $product->name }}
                                     </td>
                                     <td
@@ -261,7 +283,7 @@
                                             <div class="p-6 space-y-6">
                                                 <form
                                                     action="{{ route('admin.products.update', ['product' => $product->id]) }}"
-                                                    method="POST">
+                                                    method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PUT')
                                                     <div class="grid grid-cols-6 gap-6">
@@ -274,13 +296,17 @@
                                                                    placeholder="{{ $product->name }}" required>
                                                         </div>
                                                         <div class="col-span-6 sm:col-span-3">
-                                                            <label for="image_url"
-                                                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
-                                                                URL</label>
-                                                            <input type="text" name="image_url"
-                                                                   value="{{ $product->image_url }}" id="image_url"
-                                                                   class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                   placeholder="{{ $product->image_url }}" required>
+                                                            <label for="countries"
+                                                                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                                                                an category</label>
+                                                            <select name="category_id"
+                                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                                                @foreach ($categories as $category)
+                                                                    <option value="{{ $category->id }}"
+                                                                        {{ $category->id == $product->product_category_id ? 'selected' : '' }}>
+                                                                        {{ $category->name }}</option>
+                                                                @endforeach
+                                                            </select>
                                                         </div>
                                                         <div class="col-span-6 sm:col-span-3">
                                                             <label for="qty_in_stock"
@@ -290,7 +316,8 @@
                                                                    value="{{ $product->qty_in_stock }}"
                                                                    id="qty_in_stock"
                                                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                   placeholder="{{ $product->qty_in_stock }}" required>
+                                                                   placeholder="{{ $product->qty_in_stock }}"
+                                                                   required>
                                                         </div>
                                                         <div class="col-span-6 sm:col-span-3">
                                                             <label for="price"
@@ -305,8 +332,18 @@
                                                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                                                             <textarea id="description" rows="4"
                                                                       class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                                      placeholder="{{ $product->description }}">{{ $product->description }}
+                                                                      placeholder="{{ $product->description }}"
+                                                                      name="description">{{ $product->description }}
                                                             </textarea>
+                                                        </div>
+                                                        <div class="col-span-6 sm:col-span-3">
+                                                            <label
+                                                                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                                                for="file_input">Upload file</label>
+                                                            <input
+                                                                class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                                                id="file_input" type="file"
+                                                                name="image_url">
                                                         </div>
                                                     </div>
                                             </div>
@@ -353,7 +390,8 @@
                                                           d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                                                     </path>
                                                 </svg>
-                                                <h3 class="mt-5 mb-6 text-lg text-gray-500 dark:text-gray-400">Are you
+                                                <h3 class="mt-5 mb-6 text-lg text-gray-500 dark:text-gray-400">Are
+                                                    you
                                                     sure you want to delete this product?</h3>
                                                 <form
                                                     action="{{ route('admin.products.destroy', ['product' => $product->id]) }}"
@@ -407,7 +445,8 @@
                     </div>
                     <!-- Modal body -->
                     <div class="p-6 space-y-6">
-                        <form action="{{route('admin.products.store')}}" method="POST">
+                        <form action="{{ route('admin.products.store') }}" method="POST"
+                              enctype="multipart/form-data">
                             @csrf
                             <div class="grid grid-cols-6 gap-6">
                                 <div class="col-span-6 sm:col-span-3">
@@ -418,12 +457,6 @@
                                            placeholder="Green" required>
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="name"
-                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Image
-                                        URL</label>
-                                    <input type="text" name="image_url" id="image_url"
-                                           class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                           placeholder="Green" required>
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="qty_in_stock"
@@ -431,20 +464,39 @@
                                         in Stock</label>
                                     <input type="qty_in_stock" name="qty_in_stock" id="qty_in_stock"
                                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                           placeholder="example@company.com" required>
+                                           placeholder="20" required>
                                 </div>
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="price"
                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                                     <input type="text" name="price" id="price"
                                            class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                           placeholder="+1.602.662.8616" required>
+                                           placeholder="100$" required>
                                 </div>
                                 <div class="col-span-6">
                                     <label for="description"
                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                                    <input type="text" id="description"
+                                    <input type="text" id="description" name="description"
                                            class="block w-full p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label for="countries"
+                                           class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+                                        an
+                                        category</label>
+                                    <select name="category_id"
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="col-span-6 sm:col-span-3">
+                                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                           for="file_input">Upload file</label>
+                                    <input
+                                        class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                        id="file_input" type="file" name="image_url">
                                 </div>
                             </div>
                     </div>
@@ -456,10 +508,8 @@
                         </button>
                     </div>
                     </form>
-
                 </div>
             </div>
         </div>
-
-
-</x-admin.layout>
+    </div>
+@endsection

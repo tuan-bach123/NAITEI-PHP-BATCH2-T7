@@ -20,7 +20,7 @@
               <div class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                 <div class="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
                   <a href="#" class="shrink-0 md:order-1">
-                    <img class="h-20 w-20 dark:hidden" src="{{ $cart_item->product()->image_url }}" alt="imac image" />
+                    <img class="h-20 w-20 dark:hidden" src="{{ Vite::asset('storage/app/' . $cart_item->product()->image_url) }}" alt="imac image" />
                   </a>
 
                   <label for="counter-input" class="sr-only">{{__('Choose quantity')}}:</label>
@@ -77,15 +77,15 @@
                 <div
                   class="space-y-6 overflow-hidden rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
                   <a href="#" class="overflow-hidden rounded">
-                    <img class="mx-auto dark:hidden"
-                      src="{{ $trend_item->image_url }}" alt="imac image" />
+                    <img class="h-48 overflow-hidden object-contain mx-auto dark:hidden"
+                      src="{{ Vite::asset('storage/app/' . $trend_item->image_url) }}" alt="imac image" />
                   </a>
                   <div>
                     <a href="{{ route('products.show', ['product' => $trend_item->id]) }}"
                       class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
                       {{ $trend_item->name }}
                     </a>
-                    <p class="max-h-8 min-h-2 overflow-hidden">{{ $trend_item->description }}</p>
+                    <p class="h-32 min-h-2 overflow-hidden">{{ $trend_item->description }}</p>
                   </div>
 
                   <div>

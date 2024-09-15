@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Controllers\UserAddressController;
-use App\Http\Middleware\CheckOwner;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Middleware\CheckOwner;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
@@ -15,6 +15,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GoogleAuthController;
 use App\Http\Controllers\UserReviewController;
+use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\OrderDetailController;
 
 // Rest of the code...
@@ -32,6 +33,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('send_email', [EmailController::class, 'store'])->name('email.store');
 
 require __DIR__ . '/auth.php';
+
 // Profile management routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -65,14 +67,10 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
     require __DIR__ . '/admin/dashboard.php';
 });
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('/review/create', [UserReviewController::class, 'create'])->name('review.create');
-    Route::post('/review', [UserReviewController::class, 'store'])->name('review.store');
-    Route::middleware([CheckOwner::class])->group(function () {
-        Route::get('review/edit/{id}', [UserReviewController::class, 'edit'])->name('review.edit');
-        Route::put('/review/{id}', [UserReviewController::class, 'update'])->name('review.update');
-        Route::delete('/review/{id}', [UserReviewController::class, 'destroy'])->name('review.destroy');
-    });
+Route::middleware(['auth', 'admin'])->prefix('admin/crud')->group(function () {
+    require __DIR__ . '/admin/users.php';
+    require __DIR__ . '/admin/products.php';
+    require __DIR__ . '/admin/categories.php';
 });
 
 Route::middleware(['auth', 'admin'])->prefix('admin/crud')->group(function () {
@@ -88,5 +86,13 @@ Route::get('/language/{lang}', [LanguageController::class, 'changeLanguage'])->n
 Route::get('auth/google', [GoogleAuthController::class, 'redirect'])->name('google-auth');
 Route::get('auth/google/call-back', [GoogleAuthController::class, 'callbackGoogle'])->name('google-callback');
 
-require __DIR__ . '/auth.php';
+Route::middleware(['auth'])->group(function () {
+    Route::get('/review/create', [UserReviewController::class, 'create'])->name('review.create');
+    Route::post('/review', [UserReviewController::class, 'store'])->name('review.store');
+    Route::middleware([CheckOwner::class])->group(function () {
+        Route::get('review/edit/{id}', [UserReviewController::class, 'edit'])->name('review.edit');
+        Route::put('/review/{id}', [UserReviewController::class, 'update'])->name('review.update');
+        Route::delete('/review/{id}', [UserReviewController::class, 'destroy'])->name('review.destroy');
+    });
+});
 

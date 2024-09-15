@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <section class="bg-primary-50 py-8 antialiased dark:bg-primary-900 md:py-12">
+    <section class="bg-white-50 py-8 antialiased dark:bg-white-900 md:py-12">
         <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
             <!-- Heading & Filters -->
             <div class="mb-4 items-end justify-between space-y-4 sm:flex sm:space-y-0 md:mb-8">

@@ -7,6 +7,7 @@ use App\Models\OrderItem;
 use App\Models\OrderStatus;
 use App\Models\OrderDetail;
 
+use App\Models\ShoppingCart;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -19,7 +20,7 @@ class OrderController extends Controller
     public function index(): View
     {
         $user = Auth::user();
-        $orderItems = $user->shoppingCarts->first()->shoppingCartItems;
+        $orderItems = $user->shoppingCarts->find(session('card_id'))->shoppingCartItems;
 
         $userLocation = $user->userAddresses()->where('is_default', true)->first();
         $defaultAddress = $userLocation ? $userLocation->address : null;

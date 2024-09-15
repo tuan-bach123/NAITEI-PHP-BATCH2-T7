@@ -47,7 +47,7 @@ $cart_items = count($cart_items) ? $cart_items : null;
                                                 <li class="flex py-6">
                                                     <div
                                                         class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">
-                                                        <img src="{{ $cart_item->product()->image_url }}"
+                                                        <img src="{{ Vite::asset('storage/app/' . $cart_item->product()->image_url) }}"
                                                             alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
                                                             class="h-full w-full object-cover object-center">
                                                     </div>
@@ -106,7 +106,8 @@ $cart_items = count($cart_items) ? $cart_items : null;
                             <div class="mt-6 flex justify-center text-center text-sm text-gray-500">
                                 <p>
                                     or
-                                    <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500" onclick="sidebarClose()">
+                                    <button type="button" class="font-medium text-indigo-600 hover:text-indigo-500"
+                                        onclick="sidebarClose()">
                                         Continue Shopping
                                         <span aria-hidden="true"> &rarr;</span>
                                     </button>
@@ -119,7 +120,3 @@ $cart_items = count($cart_items) ? $cart_items : null;
         </div>
     </div>
 </div>
-
-
-
-

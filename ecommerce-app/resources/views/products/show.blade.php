@@ -4,7 +4,8 @@
         <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
             <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16">
                 <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
-                    <img class="w-full dark:hidden" src="{{ url('/products/' . $product->image_url) }}" alt="{{ $product->image_url }}" />
+                    <img class="w-full dark:hidden" src="{{ Vite::asset('storage/app/' . $product->image_url) }}"
+                        alt="{{ $product->image_url }}" />
                 </div>
 
                 <div class="mt-6 sm:mt-8 lg:mt-0">
@@ -69,7 +70,7 @@
                     </div>
                     <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
                     <p class="mb-6 text-gray-500 dark:text-gray-400">
-                        {{ $product->description}}
+                        {{ $product->description }}
                     </p>
                 </div>
             </div>

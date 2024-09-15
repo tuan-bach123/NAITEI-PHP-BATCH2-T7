@@ -3,7 +3,7 @@
         <td class="whitespace-nowrap py-4 md:w-[384px]">
             <div class="flex items-center gap-4">
                 <a href="#" class="flex items-center aspect-square w-10 h-10 shrink-0">
-                    <img class="h-auto w-full max-h-full dark:hidden" src="{{ $orderItem->product()->image_url }}"
+                    <img class="h-auto w-full max-h-full dark:hidden" src="{{ Vite::asset('storage/app/' . $orderItem->product()->image_url) }}"
                         alt="watch image" />
                     <img class="hidden h-auto w-full max-h-full dark:block"
                         src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg"

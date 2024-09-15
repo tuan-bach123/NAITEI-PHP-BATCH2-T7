@@ -23,7 +23,7 @@
 					<div class="space-y-4 p-6">
 						<div class="flex items-center gap-6">
 							<a href="/products/{{ $orderItem-> product_id }}" class="h-14 w-14 shrink-0">
-								<img class="h-full w-full dark:hidden" src="{{ $orderItem->product->image_url }}" alt="imac image" />
+								<img class="h-full w-full dark:hidden" src="{{ Vite::asset('storage/app/' . $orderItem->product->image_url) }}" alt="imac image" />
 							</a>
 
 							<a href="/products/{{ $orderItem-> product_id }}" class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white"> {{ $orderItem->product->name }} </a>
