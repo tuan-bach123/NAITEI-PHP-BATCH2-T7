@@ -93,7 +93,7 @@
                                 <li><a href="/profile" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                         My Account </a></li>
-                                <li><a href="#" title=""
+                                <li><a href="{{ route("order-details.index") }}" title=""
                                         class="inline-flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm hover:bg-gray-100 dark:hover:bg-gray-600">
                                         My Orders </a></li>
                                 <li><a href="#" title=""
@@ -121,7 +121,7 @@
                                 </form>
                             </div>
                         </div>
-                        
+
                         <x-cart-side-bar></x-cart-side-bar>
                     @endauth
 

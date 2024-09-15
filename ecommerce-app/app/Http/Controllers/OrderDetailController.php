@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\OrderDetail;
 use App\Http\Controllers\Controller;
 use App\Models\OrderItem;
+use App\Models\OrderStatus;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -68,7 +69,12 @@ class OrderDetailController extends Controller
      */
     public function update(Request $request, OrderDetail $orderDetail)
     {
-        //
+        OrderStatus::where('id', $orderDetail->order_status_id)
+            ->update([
+                'status' => 'cancelled',
+            ]);
+        
+        return redirect('/order-details');
     }
 
     /**

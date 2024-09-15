@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/order-details', [OrderDetailController::class, 'index'])->name('order-details.index');
     Route::get('/order-details/{orderDetail}', [OrderDetailController::class, 'show'])->name('order-details.show');
+    Route::put('/order-details/{orderDetail}', [OrderDetailController::class, 'update'])->name('order-details.update');
 
     Route::get('/cart', [CartController::class, 'show'])->name('cart.show');
     Route::post('/cart/add', [CartController::class, 'update'])->name('cart.update');

@@ -329,5 +329,8 @@
     "Do you have a voucher or gift card": "Bạn có voucher hay thẻ quà tặng",
     "Apply Code": "Áp dụng mã",
     "Add to Favourites": "Yêu thích",
-    "Remove": "Xoá"
+    "Remove": "Xoá",
+    "Checkout": "Thanh toán",
+    "Shipping and taxes calculated at checkout": "Phí vận chuyển và thuế sẽ được tính khi thanh toán",
+    "Subtotal": "Tổng"
 }
