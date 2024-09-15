@@ -63,13 +63,6 @@ class User extends Authenticatable
         return $this->hasMany(UserAddress::class);
     }
 
-    /*Payment where???
-    public function userPayments(): HasMany
-    {
-        return $this->hasMany(UserPayment::class);
-    }
-    */
-
     public function userReview(): HasMany
     {
         return $this->hasMany(UserReview::class);

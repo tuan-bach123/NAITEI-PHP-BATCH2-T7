@@ -26,27 +26,6 @@
                   <label for="counter-input" class="sr-only">Choose quantity:</label>
                   <div class="flex items-center justify-betweeen md:order-3 md:justify-end">
                     <div class="flex items-center">
-                      <!--
-                      <button type="button" id="decrement-button" data-input-counter-decrement="counter-input"
-                        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                        <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M1 1h16" />
-                        </svg>
-                      </button>
-                      <input type="text" id="counter-input" data-input-counter
-                        class="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white"
-                        placeholder="" value="2" required />
-                      <button type="button" id="increment-button" data-input-counter-increment="counter-input"
-                        class="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-md border border-gray-300 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
-                        <svg class="h-2.5 w-2.5 text-gray-900 dark:text-white" aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 1v16M1 9h16" />
-                        </svg>
-                      </button>
-                      -->
                       {{ $cart_item->qty }}
                     </div>
                     <div class="text-end md:order-4 md:w-32">
@@ -106,7 +85,7 @@
                       class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white">
                       {{ $trend_item->name }}
                     </a>
-                    <p class="max-h-1 overflow-hidden">{{ $trend_item->description }}</p>
+                    <p class="max-h-8 min-h-2 overflow-hidden">{{ $trend_item->description }}</p>
                   </div>
 
                   <div>
@@ -128,7 +107,7 @@
                       <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <button type="button"
-                      class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                      class="inline-flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium  text-white hover:bg-blue-800">
                       <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
                         height="24" fill="none" viewBox="0 0 24 24">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -172,8 +151,8 @@
               </dl>
             </div>
 
-            <a href="#"
-              class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed
+            <a href="{{ route('orders.index') }}"
+              class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Proceed
               to Checkout</a>
 
             <div class="flex items-center justify-center gap-2">
@@ -201,7 +180,7 @@
                   placeholder="" required />
               </div>
               <button type="submit"
-                class="flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Apply
+                class="flex w-full items-center justify-center rounded-lg bg-blue-600 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Apply
                 Code</button>
             </form>
           </div>
