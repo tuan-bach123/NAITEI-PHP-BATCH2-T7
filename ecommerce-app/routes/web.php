@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\CheckOwner;
+use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CartController;
@@ -33,7 +33,6 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('send_email', [EmailController::class, 'store'])->name('email.store');
 
 require __DIR__ . '/auth.php';
-
 // Profile management routes
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'index'])->name('profile.index');

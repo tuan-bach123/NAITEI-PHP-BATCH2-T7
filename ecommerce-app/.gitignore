@@ -22,4 +22,3 @@ yarn-error.log
 .php-cs-fixer.cache
 package-lock.json
 package.json
-package-lock.json

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\OrderConfirmed;
 use App\Models\OrderItem;
 use App\Models\OrderStatus;
 use App\Models\OrderDetail;
-
+use App\Mail\OrderConfirmed;
 use App\Models\ShoppingCart;
+
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;

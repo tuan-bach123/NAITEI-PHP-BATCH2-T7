@@ -2,10 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class ProductCategory extends Model
 {
@@ -30,5 +31,10 @@ class ProductCategory extends Model
         static::creating(function (ProductCategory $productCategory) {
             $productCategory->id = Str::uuid();
         });
+    }
+
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class, 'product_category_id');
     }
 }

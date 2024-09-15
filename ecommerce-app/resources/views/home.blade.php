@@ -3,8 +3,8 @@
     <div class="flex-grow">
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <h2 class="mb-6 text-2xl font-bold text-gray-800">{{__('Trending Products')}}</h2>
-            <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-                @foreach ($products as $product)
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                @foreach ($trendingProducts as $product)
                     <x-product :product="$product" />
                 @endforeach
             </div>
@@ -90,43 +90,55 @@
                                 d="m19 9-7 7-7-7" />
                         </svg>
                     </button>
+                    <!-- Sort Button -->
+
+
+                    <!-- Sort Dropdown -->
                     <div id="dropdownSort1"
                         class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow dark:bg-gray-700"
                         data-popper-placement="bottom">
                         <ul class="p-2 text-left text-sm font-medium text-gray-500 dark:text-gray-400"
-                            aria-labelledby="sortDropdownButton">
-                            <li>
-                                <a href="#"
-                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    The most popular </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    Newest </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    Increasing price </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    Decreasing price </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    No. reviews </a>
-                            </li>
-                            <li>
-                                <a href="#"
-                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white">
-                                    Discount % </a>
-                            </li>
+                            aria-labelledby="sortDropdownButton1">
+                            <li><button type="button"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onclick="applySort('az')">A-Z</button></li>
+                            <li><button type="button"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onclick="applySort('za')">Z-A</button></li>
+                            <li><button type="button"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onclick="applySort('low-high')">Increasing price</button></li>
+                            <li><button type="button"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onclick="applySort('high-low')">Decreasing price</button></li>
+                            <li><button type="button"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onclick="applySort('rating-low-high')">Increasing rating</button></li>
+                            <li><button type="button"
+                                    class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-600 dark:hover:text-white"
+                                    onclick="applySort('rating-high-low')">Decreasing rating</button></li>
                         </ul>
                     </div>
+                    <!-- Sort and Filter Form -->
+                    <form id="filterSortForm" method="GET" action="{{ route('home.index') }}">
+                        <!-- Search query -->
+                        <input type="hidden" name="search" value="{{ request('search') }}">
+
+                        <!-- Existing filters will be passed here as hidden inputs -->
+                        @if(is_array(request('categories')))
+                            @foreach(request('categories') as $categoryId)
+                                <input type="hidden" name="categories[]" value="{{ $categoryId }}">
+                            @endforeach
+                        @else
+                            <input type="hidden" name="categories[]" value="{{ request('categories') }}">
+                        @endif
+
+                        <!-- Hidden input for sort value -->
+                        <input type="hidden" name="sort" id="sortInput" value="{{ request('sort') }}">
+
+                        <!-- Any other necessary filters -->
+                    </form>
+
                 </div>
             </div>
             <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
