@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layout>
     <div class="flex items-center justify-center min-h-screen bg-gray-100">
         <!-- Modal content -->
         <div class="w-full max-w-md p-6 bg-white rounded-lg shadow dark:bg-gray-800">
@@ -37,12 +37,6 @@
                     <input type="telephone" id="telephone" name="telephone" value="{{ Auth::user()->telephone }}" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:ring-primary-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white" required />
                 </div>
 
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-language')
-                </div>
-            </div>
-
                 <div class="mb-6">
                     <label for="avatar" class="block text-sm font-medium text-gray-900 dark:text-white">Avatar</label>
                     <input type="file" id="avatar" name="avatar" class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white" />
@@ -55,4 +49,4 @@
             </form>
         </div>
     </div>
-</x-app-layout>
+</x-layout>

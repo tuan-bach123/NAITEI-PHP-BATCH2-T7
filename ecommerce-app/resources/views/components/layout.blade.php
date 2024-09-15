@@ -87,6 +87,10 @@
                             </svg>
                         </button>
 
+                        <div class="max-w-xl">
+                            @include('profile.partials.update-language')
+                        </div>
+
                         <div id="userDropdown1"
                             class="hidden z-10 w-56 divide-y divide-gray-100 overflow-hidden overflow-y-auto rounded-lg bg-white antialiased shadow dark:divide-gray-600 dark:bg-gray-700">
                             <ul class="p-2 text-start text-sm font-medium text-gray-900 dark:text-white">
