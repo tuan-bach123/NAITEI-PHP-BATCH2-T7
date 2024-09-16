@@ -17,5 +17,15 @@ function sidebarClose() {
     document.getElementsByClassName('cart__sidecontainer')[0].classList.remove('show');
 }
 
+function applySort(sortValue) {
+    // Set the sort value in the hidden input field
+    document.getElementById('sortInput').value = sortValue;
+
+    // Submit the form
+    document.getElementById('filterSortForm').submit();
+}
+
+window.applySort = applySort;
 window.sidebarOpen = sidebarOpen;
 window.sidebarClose = sidebarClose;
+
